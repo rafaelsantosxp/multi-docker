@@ -8,15 +8,17 @@ before_install:
 script:
     - docker run rafaelsantosxp/react-test npm test -- --coverage
 
-after_sucess:
-    - docker build -t rafaelsantosxp/multi-client ./client
-    - docker build -t rafaelsantosxp/multi-nginx ./nginx
-    - docker build -t rafaelsantosxp/multi-server ./server
-    - docker build -t rafaelsantosxp/multi-worker ./worker
-    # Log in Docker registry
+after_sucess
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    # Push images
+
+    - docker build -t rafaelsantosxp/multi-client ./client
     - docker push rafaelsantosxp/multi-client
+
+    - docker build -t rafaelsantosxp/multi-nginx ./nginx
     - docker push rafaelsantosxp/multi-nginx
+
+    - docker build -t rafaelsantosxp/multi-server ./server
     - docker push rafaelsantosxp/multi-server
-    - docker push rafaelsantosxp/multi-worker
+
+    - docker build -t rafaelsantosxp/multi-worker ./worker
+    - docker push rafaelsantosxp/multi-worker    
