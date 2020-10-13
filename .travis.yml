@@ -8,7 +8,7 @@ before_install:
 script:
     - docker run rafaelsantosxp/react-test npm test -- --coverage
 
-after_sucess
+after_sucess:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     - docker build -t rafaelsantosxp/multi-client ./client
