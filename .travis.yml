@@ -13,4 +13,10 @@ after_sucess:
     - docker build -t rafaelsantosxp/multi-nginx ./nginx
     - docker build -t rafaelsantosxp/multi-server ./server
     - docker build -t rafaelsantosxp/multi-worker ./worker
-
+    # Log in Docker registry
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Push images
+    - docker push rafaelsantosxp/multi-client
+    - docker push rafaelsantosxp/multi-nginx
+    - docker push rafaelsantosxp/multi-server
+    - docker push rafaelsantosxp/multi-worker
