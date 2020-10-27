@@ -1,0 +1,32 @@
+{
+
+    "AWSEBDockerunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "rafaelsantosxp/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "rafaelsantosxp/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "rafaelsantosxp/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client","server"]
+        }
+    ]
+
+}
