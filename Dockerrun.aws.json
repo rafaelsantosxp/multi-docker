@@ -1,6 +1,5 @@
 {
-
-    "AWSEBDockerunVersion": 2,
+    "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
         {
             "name": "client",
@@ -28,5 +27,4 @@
             "links": ["client","server"]
         }
     ]
-
 }
